@@ -9,7 +9,7 @@ import './Blog.css';
 const BlogPage = () => {
   const [posts, setPosts] = useState(() => getAllPosts());
   const location = useLocation();
-  const { user, isLogged } = useAuth();
+  const { isLogged } = useAuth();
 
   useEffect(() => {
     const syncPosts = () => setPosts(getAllPosts());

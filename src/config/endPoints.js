@@ -1,8 +1,5 @@
-/**
- * En desarrollo, deja `VITE_API_URL` vacío para usar el proxy de Vite hacia el backend (evita CORS).
- * En producción, define `VITE_API_URL` con la URL pública de la API (ej. https://api.midominio.com).
- */
-const base = (import.meta.env.VITE_API_URL ?? '').replace(/\/$/, '')
+const API_URL = 'https://biblioteca-virtual-grupo-3.onrender.com'
+const base = (import.meta.env.VITE_API_URL || API_URL).replace(/\/$/, '')
 
 const withBase = (path) => (base ? `${base}${path}` : path)
 
@@ -11,5 +8,6 @@ export const end_points = {
   perfiles: withBase('/perfiles'),
   roles: withBase('/roles'),
   prestamos: withBase('/prestamos'),
+  prestamosPorPerfil: (perfilId) => withBase(`/prestamos/perfil/${perfilId}`),
   librosPrestadosPorPerfil: (perfilId) => withBase(`/perfiles/${perfilId}/libros-prestados`),
 }

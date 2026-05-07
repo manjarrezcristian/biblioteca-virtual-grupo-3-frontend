@@ -5,27 +5,6 @@ import { end_points } from '../config/endPoints'
 import { obtenerSesion, cerrarSesion } from '../helpers/session'
 import './UserProfile.css'
 
-const fallbackLoans = [
-  {
-    libro: 'El principito',
-    fechaPrestamo: '01/04/2026',
-    fechaDevolucion: '15/04/2026',
-    estado: 'Devuelto',
-  },
-  {
-    libro: 'Cien años de soledad',
-    fechaPrestamo: '10/04/2026',
-    fechaDevolucion: '25/04/2026',
-    estado: 'En préstamo',
-  },
-  {
-    libro: '1984',
-    fechaPrestamo: '13/04/2026',
-    fechaDevolucion: '28/04/2026',
-    estado: 'Pendiente',
-  },
-]
-
 const UserProfile = () => {
   const navigate = useNavigate()
   const [profile, setProfile] = useState(null)
@@ -33,16 +12,11 @@ const UserProfile = () => {
   const [loading, setLoading] = useState(true)
   const session = useMemo(() => obtenerSesion(), [])
 
-  console.log('UserProfile - Sesión obtenida:', session)
-
   useEffect(() => {
     if (!session) {
       navigate('/login')
       return
     }
-
-    console.log('Sesión actual:', session)
-    console.log('Intentando obtener usuario con ID:', session.id)
 
     let cancelled = false
     const loadProfile = async () => {
@@ -53,7 +27,6 @@ const UserProfile = () => {
         }
 
         const currentUser = await resUsuario.json()
-        console.log('Usuario obtenido:', currentUser)
         if (!currentUser) {
           setProfile({
             email: session.email,
@@ -63,8 +36,6 @@ const UserProfile = () => {
         }
 
         const perfilId = currentUser.perfilId ?? currentUser.perfil?.id
-        console.log('Perfil ID obtenido:', perfilId, 'Usuario completo:', currentUser)
-        
         if (!perfilId) {
           console.warn('No hay perfilId disponible')
           setProfile({
@@ -97,23 +68,26 @@ const UserProfile = () => {
 
           // Cargar préstamos específicos del perfil
           try {
-            const urlPrestamos = end_points.librosPrestadosPorPerfil(perfilId)
-            console.log('Cargando préstamos desde:', urlPrestamos)
-            
-            const resPrestamos = await fetch(urlPrestamos)
-            console.log('Respuesta préstamos status:', resPrestamos.status)
-            
+            const prestamosUrls = [
+              end_points.prestamosPorPerfil(perfilId),
+              end_points.librosPrestadosPorPerfil(perfilId),
+            ]
+
+            let resPrestamos = null
+            for (const urlPrestamos of prestamosUrls) {
+              resPrestamos = await fetch(urlPrestamos)
+              if (resPrestamos.ok) break
+            }
+
             if (resPrestamos.ok) {
               const contentType = resPrestamos.headers.get('content-type') ?? ''
               const prestamosData = contentType.includes('application/json')
                 ? await resPrestamos.json()
                 : null
-              console.log('Datos de préstamos recibidos:', prestamosData)
               
               const prestamosArray = Array.isArray(prestamosData)
                 ? prestamosData
                 : prestamosData?.content ?? prestamosData?.prestamos ?? prestamosData?.data ?? []
-              console.log('Array de préstamos:', prestamosArray)
               
               if (!cancelled) {
                 setLoans(prestamosArray)
@@ -139,7 +113,6 @@ const UserProfile = () => {
       } finally {
         if (!cancelled) {
           setLoading(false)
-          console.log('loadProfile finished, loading set to false')
         }
       }
     }
@@ -170,8 +143,6 @@ const UserProfile = () => {
     .map((value) => value[0]?.toUpperCase() ?? '')
     .join('')
 
-  console.log('Render values:', { loading, loansLength: loans.length, loans })
-
   const infoItems = [
     { label: 'Correo', value: profile?.email ?? session.email ?? '-' },
     { label: 'Rol', value: profile?.rolDescripcion ?? session.rolDescripcion ?? 'No disponible' },
@@ -188,10 +159,6 @@ const UserProfile = () => {
     { label: 'Rol activo', value: profile?.rolDescripcion ?? session.rolDescripcion ?? 'No disponible', accent: 'sun' },
     { label: 'Estado', value: loading ? 'Cargando...' : 'Activo', accent: 'mint' },
   ]
-
-  useEffect(() => {
-    console.log('Render loans state:', loans.length, loans)
-  }, [loans])
 
   return (
     <div className="perfil-page">

@@ -86,7 +86,6 @@ const BookDetail = () => {
   };
 
   const handleSubmit = async (event) => {
-  console.log("ENTRÓ AL SUBMIT");
   event.preventDefault();
 
   const reservaDate = new Date(form.fechaHoy);
@@ -105,7 +104,7 @@ const BookDetail = () => {
 
   try {
     const userResponse = await fetch(
-      `http://localhost:8080/usuarios/${encodeURIComponent(user.id)}`
+      `${end_points.usuarios}/${encodeURIComponent(user.id)}`
     );
 
     if (!userResponse.ok) {
@@ -125,23 +124,18 @@ const BookDetail = () => {
     const payload = {
       libro: {
         nombreLibro: volume.title,
+        cantidadPaginas: volume.pageCount || 0,
         googleId: book.id,
         descripcion: volume.description,
         thumbnail: volume.imageLinks?.thumbnail
           ? volume.imageLinks.thumbnail.replace("http://", "https://")
           : "",
-        autoresTexto: (volume.authors || []).join(", "),
-        // Usar IDs por defecto o crear entidades si no existen
-        autor: { id: 1 }, // ID del autor por defecto
-        categoria: { id: 1 }, // ID de la categoría por defecto
-        estado: { id: 1 } // ID del estado "Disponible" por defecto
+        autoresTexto: (volume.authors || []).join(", ")
       },
       perfilId,
       fechaDevolucion: form.fechaDevolucion
     };
-    console.log('Enviando reserva:', payload);
-
-    const response = await fetch("http://localhost:8080/prestamos", {
+    const response = await fetch(end_points.prestamos, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -149,7 +143,6 @@ const BookDetail = () => {
       body: JSON.stringify(payload),
     });
 
-    console.log('Respuesta POST prestamos status:', response.status);
     if (!response.ok) {
       const errorText = await response.text();
       console.error('Error backend:', errorText);

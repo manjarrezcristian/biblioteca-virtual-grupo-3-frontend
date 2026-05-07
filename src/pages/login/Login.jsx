@@ -133,7 +133,7 @@ const Login = () => {
         rolDescripcion: rolDesc,
       })
 
-      await showSuccess(`Bienvenido, ${authUser.email ?? email}.`, 'Inicio de sesión')
+      await showSuccess(`Bienvenido, ${authUser.perfil?.nombre ?? email}.`, 'Inicio de sesión')
       if (esRolAdmin(authUser.rol)) {
         navigate('/admin/dashboard')
       } else {

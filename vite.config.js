@@ -1,15 +1,17 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 
+const apiUrl = 'https://biblioteca-virtual-grupo-3.onrender.com'
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/usuarios': { target: 'http://localhost:8080', changeOrigin: true },
-      '/perfiles': { target: 'http://localhost:8080', changeOrigin: true },
-      '/roles': { target: 'http://localhost:8080', changeOrigin: true },
-      '/prestamos': { target: 'http://localhost:8080', changeOrigin: true },
+      '/usuarios': { target: apiUrl, changeOrigin: true },
+      '/perfiles': { target: apiUrl, changeOrigin: true },
+      '/roles': { target: apiUrl, changeOrigin: true },
+      '/prestamos': { target: apiUrl, changeOrigin: true },
     },
   },
 })
