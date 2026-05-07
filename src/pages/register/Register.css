@@ -1,0 +1,66 @@
+.register-container {
+  max-width: 720px;
+}
+
+#bannerRegistro {
+    height: 700px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 67%;
+    background-color: #d7e0dd;
+    display: flex;
+    align-items: center;
+  }
+  
+  @media (max-width: 600px) {
+    .card {
+      padding: 1rem;
+      box-shadow: none;
+      border-radius: .5rem;
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+    }
+  
+    .form-label,
+    .btn {
+      font-size: 0.9rem;
+    }
+  
+    .contenido-footer {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+    }
+  }
+  
+  @media (min-width: 601px) and (max-width: 1023px) {
+    .card {
+      padding: 2rem;
+    }
+  
+    h2 {
+      font-size: 2rem;
+    }
+  
+    .informacion {
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .informacion {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+  
+    .informacion ul {
+      width: 30%;
+    }
+  }

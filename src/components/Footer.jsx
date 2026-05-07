@@ -1,60 +1,64 @@
-import React from "react";
-import "./Footer.css";
-import { FaFacebookF, FaInstagram, FaSpotify } from "react-icons/fa";
+import './Footer.css';
+import { FaFacebookF, FaInstagram, FaSpotify } from 'react-icons/fa';
+
+const footerColumns = [
+  [
+    'Conocenos',
+    'Encuentranos',
+    'Informe 2024',
+    'Tarifas',
+    'Beneficios',
+    'Trabaja con nosotros',
+    'Transparencia y acceso a la informacion publica',
+    'Nuestras politicas',
+    'Terminos y condiciones',
+    'Notificaciones judiciales',
+  ],
+  [
+    'Te acompanamos',
+    'Atencion y servicio a la ciudadania',
+    'Presentar una peticion u observacion sobre los servicios',
+    'Carta derechos y deberes afiliados',
+    'Compromisos frente a la etica y el gobierno corporativo',
+    'Ayudanos a mejorar, cuentanos tu experiencia',
+    'Mapa de sitio',
+  ],
+];
 
 const Footer = () => {
   return (
     <footer className="footer">
-      
       <div className="footer-container">
-
-        {/* Redes sociales */}
-        <div className="footer-social">
-          <FaFacebookF />
-          <FaInstagram />
-          <FaSpotify />
+        <div className="footer-social" aria-label="Redes sociales">
+          <a href="#facebook" aria-label="Facebook">
+            <FaFacebookF />
+          </a>
+          <a href="#instagram" aria-label="Instagram">
+            <FaInstagram />
+          </a>
+          <a href="#spotify" aria-label="Spotify">
+            <FaSpotify />
+          </a>
         </div>
 
-        {/* Columna 1 */}
-        <div className="footer-column">
-          <p>CONÓCENOS</p>
-          <p>ENCUÉNTRANOS</p>
-          <p>INFORME 2024</p>
-          <p>TARIFAS</p>
-          <p>BENEFICIOS</p>
-          <p>TRABAJA CON NOSOTROS</p>
-          <p>TRANSPARENCIA Y ACCESO A LA INFORMACIÓN PÚBLICA</p>
-          <p>NUESTRAS POLÍTICAS</p>
-          <p>TÉRMINOS Y CONDICIONES</p>
-          <p>NOTIFICACIONES JUDICIALES</p>
-        </div>
+        {footerColumns.map((column, index) => (
+          <div className="footer-column" key={index}>
+            {column.map((item) => (
+              <p key={item}>{item}</p>
+            ))}
+          </div>
+        ))}
 
-        {/* Columna 2 */}
-        <div className="footer-column">
-          <p>TE ACOMPAÑAMOS</p>
-          <p>ATENCIÓN Y SERVICIO A LA CIUDADANÍA</p>
-          <p>PRESENTAR UNA PETICIÓN U OBSERVACIÓN SOBRE LOS SERVICIOS</p>
-          <p>CARTA DERECHOS Y DEBERES AFILIADOS</p>
-          <p>NUESTROS COMPROMISOS FRENTE A LA ÉTICA Y EL GOBIERNO CORPORATIVO</p>
-          <p>AYÚDANOS A MEJORAR, CUÉNTANOS TU EXPERIENCIA</p>
-          <p>MAPA DE SITIO</p>
-        </div>
-
-        {/* Columna 3 */}
         <div className="footer-column footer-contact">
-          <p className="title">CENTRAL DE LLAMADAS</p>
-          <p>PARA LOS DEMÁS MUNICIPIOS Y REGIONES SIN COSTO</p>
+          <p className="title">Central de llamadas</p>
+          <p>Para los demas municipios y regiones sin costo</p>
           <p className="phone">01 8000 415 455</p>
-          <p>VALLE DE ABURRÁ Y ORIENTE CERCANO</p>
+          <p>Valle de Aburra y Oriente cercano</p>
           <p className="phone">604 360 70 80</p>
         </div>
-
       </div>
 
-      <div className="footer-bottom">
-        DERECHOS RESERVADOS © 2026
-      </div>
-
+      <div className="footer-bottom">Derechos reservados � 2026</div>
     </footer>
   );
 };

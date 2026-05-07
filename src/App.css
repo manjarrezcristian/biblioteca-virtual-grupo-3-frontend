@@ -1,0 +1,28 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #f4f5f8;
+  color: #1f2937;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+.navbar-brand,
+.nav-link {
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.navbar-nav .nav-link {
+  color: #000 !important;
+}
+
+.nav-link.active {
+  font-weight: 700;
+}
+
+.footer {
+  background-color: #d7e0dd;
+}

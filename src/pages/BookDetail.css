@@ -1,0 +1,87 @@
+.detail-page {
+  min-height: 100vh;
+  background: #f7fafc;
+}
+
+.detail-hero {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.detail-info h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 3vw, 3.5rem);
+}
+
+.detail-info h4 {
+  font-size: 1.1rem;
+}
+
+.detail-meta strong {
+  display: block;
+  font-weight: 600;
+}
+
+.detail-summary h2 {
+  margin-bottom: 1rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+}
+
+.reservation-panel {
+  margin-top: 1.5rem;
+}
+
+.reservation-panel .card {
+  border-radius: 1rem;
+}
+
+.modal-backdrop-custom {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.modal.d-block {
+  display: block;
+}
+
+.modal-content {
+  border-radius: 1rem;
+  box-shadow: 0 1.5rem 3rem rgba(15, 23, 42, 0.25);
+}
+
+.modal-body {
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.back-button {
+  margin: 20px 0;
+}
+
+.back-button button {
+  background: transparent;
+  border: none;
+  color: #2b7a4b;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.back-button button:hover {
+  text-decoration: underline;
+}

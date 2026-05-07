@@ -1,0 +1,228 @@
+.create-post-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.create-post-shell {
+  margin: 0 1.25rem;
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.create-post-intro,
+.create-post-form {
+  border-radius: 30px;
+  background: rgba(255, 250, 244, 0.86);
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.06);
+}
+
+.create-post-intro {
+  padding: 1.8rem;
+  background:
+    radial-gradient(circle at top left, rgba(95, 215, 196, 0.25), transparent 35%),
+    rgba(255, 250, 244, 0.92);
+}
+
+.create-post-kicker {
+  margin: 0 0 0.6rem;
+  font-family: Arial, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6c6258;
+}
+
+.create-post-intro h1 {
+  margin: 0;
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  line-height: 0.95;
+}
+
+.create-post-intro p:last-child,
+.create-post-field span,
+.create-post-field input,
+.create-post-field textarea,
+.create-post-field select,
+.create-post-error {
+  font-family: Arial, sans-serif;
+}
+
+.create-post-intro p:last-child {
+  margin: 1rem 0 0;
+  line-height: 1.7;
+  color: #413b35;
+}
+
+.create-post-author {
+  margin-top: 1rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  display: inline-flex;
+  background: rgba(17, 17, 17, 0.08);
+  color: #111111;
+  font-size: 0.9rem;
+}
+
+.create-post-form {
+  padding: 1.8rem;
+}
+
+.create-post-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.create-post-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.create-post-field--full {
+  grid-column: 1 / -1;
+}
+
+.create-post-field span {
+  font-size: 0.92rem;
+  color: #413b35;
+}
+
+.create-post-field input,
+.create-post-field textarea,
+.create-post-field select {
+  width: 100%;
+  border: 1px solid rgba(17, 17, 17, 0.14);
+  border-radius: 18px;
+  padding: 0.9rem 1rem;
+  background: #fffdf9;
+  color: #111111;
+  resize: vertical;
+}
+
+.create-post-image-preview {
+  grid-column: 1 / -1;
+  overflow: hidden;
+  min-height: 240px;
+  border-radius: 24px;
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  background: rgba(255, 253, 249, 0.9);
+}
+
+.create-post-image-preview img {
+  width: 100%;
+  height: 100%;
+  max-height: 320px;
+  object-fit: cover;
+}
+
+.create-post-field input:focus,
+.create-post-field textarea:focus,
+.create-post-field select:focus {
+  outline: 2px solid rgba(95, 215, 196, 0.55);
+  border-color: transparent;
+}
+
+.create-post-error {
+  margin: 1rem 0 0;
+  color: #9f2f14;
+}
+
+.create-post-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.create-post-blocks-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.create-post-blocks-actions button {
+  border: 1px solid rgba(17, 17, 17, 0.14);
+  border-radius: 999px;
+  background: #ffffff;
+  color: #111111;
+  padding: 0.6rem 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.create-post-blocks-actions button:hover {
+  background: rgba(95, 215, 196, 0.15);
+  border-color: rgba(95, 215, 196, 0.4);
+}
+
+.create-post-block {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.create-post-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.create-post-block-header span {
+  font-weight: 700;
+}
+
+.create-post-block textarea,
+.create-post-block input[type='file'] {
+  width: 100%;
+}
+
+.create-post-content-image img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.create-post-actions {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.create-post-submit {
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 1.2rem;
+  background: #111111;
+  color: #fff8ef;
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  .create-post-shell,
+  .create-post-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .create-post-shell,
+  .footer {
+    margin-left: 0.85rem;
+    margin-right: 0.85rem;
+  }
+
+  .create-post-intro,
+  .create-post-form {
+    padding: 1.2rem;
+  }
+}
